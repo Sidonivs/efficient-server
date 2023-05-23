@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/mnt/c/Users/zdenek/Desktop/esw_server/build",
+  "command": "/usr/bin/g++   -I/mnt/c/Users/zdenek/Desktop/esw_server/build   -pthread -std=c++11 -g   -o CMakeFiles/server.dir/server.o -c /mnt/c/Users/zdenek/Desktop/esw_server/server.cpp",
+  "file": "/mnt/c/Users/zdenek/Desktop/esw_server/server.cpp"
+},
+{
+  "directory": "/mnt/c/Users/zdenek/Desktop/esw_server/build",
+  "command": "/usr/bin/g++   -I/mnt/c/Users/zdenek/Desktop/esw_server/build   -pthread -std=c++11 -g   -o CMakeFiles/server.dir/streamwrapper.o -c /mnt/c/Users/zdenek/Desktop/esw_server/streamwrapper.cpp",
+  "file": "/mnt/c/Users/zdenek/Desktop/esw_server/streamwrapper.cpp"
+},
+{
+  "directory": "/mnt/c/Users/zdenek/Desktop/esw_server/build",
+  "command": "/usr/bin/g++   -I/mnt/c/Users/zdenek/Desktop/esw_server/build   -pthread -std=c++11 -g   -o CMakeFiles/server.dir/threadwrapper.o -c /mnt/c/Users/zdenek/Desktop/esw_server/threadwrapper.cpp",
+  "file": "/mnt/c/Users/zdenek/Desktop/esw_server/threadwrapper.cpp"
+},
+{
+  "directory": "/mnt/c/Users/zdenek/Desktop/esw_server/build",
+  "command": "/usr/bin/g++   -I/mnt/c/Users/zdenek/Desktop/esw_server/build   -pthread -std=c++11 -g   -o CMakeFiles/server.dir/acceptor.o -c /mnt/c/Users/zdenek/Desktop/esw_server/acceptor.cpp",
+  "file": "/mnt/c/Users/zdenek/Desktop/esw_server/acceptor.cpp"
+},
+{
+  "directory": "/mnt/c/Users/zdenek/Desktop/esw_server/build",
+  "command": "/usr/bin/g++   -I/mnt/c/Users/zdenek/Desktop/esw_server/build   -pthread -std=c++11 -g   -o CMakeFiles/server.dir/gen/schema.pb.o -c /mnt/c/Users/zdenek/Desktop/esw_server/gen/schema.pb.cc",
+  "file": "/mnt/c/Users/zdenek/Desktop/esw_server/gen/schema.pb.cc"
+},
+{
+  "directory": "/mnt/c/Users/zdenek/Desktop/esw_server/build",
+  "command": "/usr/bin/g++   -I/mnt/c/Users/zdenek/Desktop/esw_server/build   -pthread -std=c++11 -g   -o CMakeFiles/server.dir/graph.o -c /mnt/c/Users/zdenek/Desktop/esw_server/graph.cpp",
+  "file": "/mnt/c/Users/zdenek/Desktop/esw_server/graph.cpp"
+}
+]

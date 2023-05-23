@@ -1,0 +1,1 @@
+/usr/bin/g++   -pthread -std=c++11 -g  -rdynamic CMakeFiles/server.dir/server.o CMakeFiles/server.dir/streamwrapper.o CMakeFiles/server.dir/threadwrapper.o CMakeFiles/server.dir/acceptor.o CMakeFiles/server.dir/gen/schema.pb.o CMakeFiles/server.dir/graph.o  -o server  -lprotobuf -lpthread 

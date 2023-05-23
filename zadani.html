@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://esw.pages.fel.cvut.cz/labs/efficient-servers/ -->
+<html lang="en" style="scroll-padding-top: 76px;"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/">
+        <link rel="shortcut icon" href="https://esw.pages.fel.cvut.cz/img/favicon.ico">
+        <title>Efficient Servers - B4M36ESW - Efficient Software</title>
+        <link href="./zadani_files/bootstrap.min.css" rel="stylesheet">
+        <link href="./zadani_files/font-awesome.min.css" rel="stylesheet">
+        <link href="./zadani_files/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="./zadani_files/github.min.css">
+
+        <script src="./zadani_files/jquery-1.10.2.min.js.stažený soubor" defer=""></script>
+        <script src="./zadani_files/bootstrap.min.js.stažený soubor" defer=""></script>
+        <script src="./zadani_files/highlight.min.js.stažený soubor"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body data-new-gr-c-s-check-loaded="14.1110.0" data-gr-ext-installed="" style="">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="https://esw.pages.fel.cvut.cz/">B4M36ESW - Efficient Software</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="https://esw.pages.fel.cvut.cz/" class="nav-link">Lectures</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#" class="nav-link dropdown-toggle" data-toggle="dropdown">Labs <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/how-to-compile-c/" class="dropdown-item">How to compile C project</a>
+</li>
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/profiling-c/" class="dropdown-item">Profiling C/C++</a>
+</li>
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/benchmarking/" class="dropdown-item">Benchmarking</a>
+</li>
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/rcu/" class="dropdown-item">Read Copy Update</a>
+</li>
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/asynchronous-io/" class="dropdown-item">Asynchronous I/O</a>
+</li>
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/serialization/" class="dropdown-item">Serialization</a>
+</li>
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/profiling-java/" class="dropdown-item">Profiling Java</a>
+</li>
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/non-blocking-algorithms/" class="dropdown-item">Non-blocking Algorithms</a>
+</li>
+                                    
+<li>
+    <a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/" class="dropdown-item active">Efficient Servers</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="https://esw.pages.fel.cvut.cz/labs/non-blocking-algorithms/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://gitlab.fel.cvut.cz/esw/esw.pages.fel.cvut.cz/edit/master/docs/labs/efficient-servers.md" class="nav-link">Edit on Gitlab
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary" style="top: 76px;">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#efficient-servers" class="nav-link active">Efficient Servers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#task-assignment" class="nav-link">Task assignment</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#protobuf-schema" class="nav-link">Protobuf schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#server-performance" class="nav-link">Server performance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#solution-testing-and-measuring" class="nav-link">Solution testing and measuring</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#static-test-data" class="nav-link">Static test data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#ritchie-server" class="nav-link">Ritchie server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#contest" class="nav-link">Contest</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#presentation-of-the-best-results" class="nav-link">Presentation of the best results</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="https://esw.pages.fel.cvut.cz/labs/efficient-servers/#evaluation" class="nav-link">Evaluation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="efficient-servers">Efficient Servers</h1>
+<p>You are given the task of exploring the streets of a foreign city to
+determine the shortest drivable distances between any two locations in
+the city. Doing this yourself is time consuming and does not scale well.
+Fortunately, you have access to the data reported by the vehicles
+driving through the city.</p>
+<p>Each vehicle traveling through the city regularly logs its location (and
+the distance traveled between the logged locations). The vehicles send
+you this data at random times, such as when the vehicle reaches the
+destination, when it does not drive for a long time, before leaving the
+city, or when its internal buffer overflows.</p>
+<p>Your customers are patrolmen scheduling their morning work shift,
+technicians fixing traffic lights, and, of course, garbage collectors.
+They will ask you for the length of the shortest path between the places
+they care about.</p>
+<p>The main goal of this task is to implement a server application that can
+handle many requests from many clients.</p>
+<p>The secondary goal is to become familiar with the documentation and
+source code of the platforms used and to apply the knowledge acquired in
+the lectures.</p>
+<h1 id="task-assignment">Task assignment</h1>
+<p>Write a TCP + protobuf-based server application that creates a
+directed graph data structure based on the data received from the
+clients, and responds to requests for the length of the shortest path
+between various locations. The server must meet the following
+requirements:</p>
+<ul>
+<li>
+<p>All TCP transmissions consist of two parts: message length (4 bytes,
+  big endian, unsigned int) + serialized protobuf message.</p>
+</li>
+<li>
+<p>The server must be able to handle a large number of simultaneously
+  connected clients (about 100).</p>
+</li>
+<li>
+<p>Your solution must pass the given time limit, i.e. be <em>green</em> in the
+  <a href="https://rtime.felk.cvut.cz/esw/server">web application</a>.</p>
+</li>
+<li>
+<p>The server must respond to each client <code>Request</code> message with a
+  <code>Response</code> message. The <code>Status</code> field in the response is required.
+  Presence of other fields depend on the type of <code>Request</code>.</p>
+</li>
+<li>
+<p>The server builds a directed graph data structure from <code>Walk</code>
+  requests from the clients. In the graph, nodes represent locations
+  and edges store the length of the path between the locations. There
+  is at most one edge between any pair of nodes. The
+  length of the edge does not necessarily correspond to Euclidean
+  distance of edge's end locations. The graph is directed, meaning
+  that an edge from location A to B does not imply anything about the
+  edge from B to A. One <code>Walk</code> never contains the same edge twice.</p>
+</li>
+<li>
+<p>The <code>x</code> and <code>y</code> coordinates of the <code>Location</code> are given in
+  millimeters.</p>
+</li>
+<li>
+<p>Due to the inaccuracy of the measurements, the same physical
+  location may be represented by different <code>Locations</code> sent in the
+  requests. Assume that any two locations with Euclidean distance less
+  or equal to 50 cm represent the same physical location.</p>
+</li>
+<li>
+<p>Multiple <code>Walk</code> requests can contain the same edge, but the lengths
+  of that edge may differ by up to 1 m.</p>
+</li>
+<li>
+<p>The server responds to <code>OneToOne</code> requests with the length of the
+  shortest path between the two given locations (in
+  <code>shortest_path_length</code> field). The shortest path length should be
+  calculated as a sum of average edge lengths. The average edge length
+  is calculated from all <code>Walk</code> requests that contained that edge
+  using integer division, i.e. rounding the result towards zero.</p>
+</li>
+<li>
+<p>The server responds to <code>OneToAll</code> requests with the sum of lengths
+  of existing shortest paths between node <code>origin</code> and all
+  other nodes. Each such a length should be calculated as for
+  <code>OneToOne</code> request. The resulting value is sent in the
+  <code>total_length</code> field.</p>
+</li>
+<li>
+<p>The returned length must take into account data from all <code>Walk</code>
+  requests received from the same client (in the same connection)
+  before the <code>OneTo*</code> request. It must also take into account <code>Walk</code>
+  requests received by another client before the server responds a
+  <code>OneTo*</code> request to that client. That is, the <code>OneTo*</code> response
+  represents a synchronization point between clients.</p>
+<p>Consider this example with two clients A and B where <code>W</code> represents
+a <code>Walk</code> request and <code>O</code> an <code>OneTo*</code> request:</p>
+<pre><code class="hljs less"><span class="hljs-attribute">A</span>: W₁W₂O₁W₃W₄O₃
+<span class="hljs-attribute">B</span>: W₅W₆W₇W₈O₂
+   → time
+</code></pre>
+<p>Response to O₁ must include data from walks W₁ and W₂. If you want,
+you can also include some or all data from W₅ and/or W₆. Response to
+O₂ must include data from walks W₁, W₂, W₅, W₆, W₇ and W₈. You can
+include W₃ if you want. Response to O₃ must include data from all
+walks.</p>
+</li>
+<li>
+<p>After the last request, the client closes the connection and the
+  server should do the same.</p>
+</li>
+<li>
+<p>The <code>Reset</code> request should cause the server to reset all its state
+  (e.g. previously received walks). The tester will issue this request
+  once, at the beginning of the test. This should allow you to
+  reliably run multiple tests without restarting your server.
+  Currently, the tester ignores the response and all related errors.</p>
+</li>
+</ul>
+<p>You can use any hardware platform, any operating system and any
+programming language.</p>
+<p>If you have any questions, please ask via <a href="https://gitlab.fel.cvut.cz/esw/esw.pages.fel.cvut.cz/-/issues">GitLab Issues</a>.</p>
+<h2 id="protobuf-schema">Protobuf schema</h2>
+<p>Use the following schema for communication with our clients:</p>
+<pre><code class="language-protobuf">syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "cz.cvut.fel.esw.server.proto";
+
+message Request {
+  oneof msg {
+    Walk walk = 1;
+    OneToOne oneToOne = 2;
+    OneToAll oneToAll = 3;
+    Reset reset = 4;
+  }
+}
+
+message Walk {
+  repeated Location locations = 1; // repeated n times, determines edge directions
+  repeated uint32 lengths = 2; // [mm], repeated n-1 times
+}
+
+message OneToOne {
+  Location origin = 1;
+  Location destination = 2;
+}
+
+message OneToAll {
+  Location origin = 1;
+}
+
+message Reset {}
+
+message Location {
+  int32 x = 1; // [mm]
+  int32 y = 2; // [mm]
+}
+
+message Response {
+  enum Status {OK = 0; ERROR = 1;};
+
+  Status status = 1; // Always present
+  string errMsg = 2;
+  uint64 shortest_path_length = 3; // [mm]
+  uint64 total_length = 4; // [mm]
+}
+</code></pre>
+<h2 id="server-performance">Server performance</h2>
+<p>The server's performance is measured with a test program that sends a
+larger amount of data and then repeatedly asks for the shortest path
+between any two locations.</p>
+<p>The total time from the start of the communication to the receipt of the
+last response is measured.</p>
+<p>Your solution has to pass given time limit.</p>
+<h2 id="solution-testing-and-measuring">Solution testing and measuring</h2>
+<p>For a test, use <a href="https://rtime.felk.cvut.cz/esw/server">web application</a> and specify:</p>
+<ul>
+<li>
+<p>the IP address of your server (any public IP address or
+<code>ritchie.ciirc.cvut.cz</code> as described below<!-- or a local IP address in KN:E-311 and KN:E-s109 -->)</p>
+</li>
+<li>
+<p>the programming language in which you wrote your solution.</p>
+</li>
+</ul>
+<p>Also, upload final working solutions to the <a href="https://cw.felk.cvut.cz/brute">upload system</a>. The
+code in the upload system must be complete and include brief
+instructions on how to compile and run it. All your tests must be
+reproducible. You may be asked to reproduce similar results that you
+have in the <a href="https://rtime.felk.cvut.cz/esw/server">web application</a> during the tutorial to prove that your
+solution is correct.</p>
+<h2 id="static-test-data">Static test data</h2>
+<p>You can use the files listed below for local testing and debugging.
+For each file, we show expected answers to the <code>OneTo*</code> requests in
+the file. You can use the <em>netcat</em> (<code>nc</code>) program to send the files to
+your program via network, e.g.:</p>
+<pre><code class="hljs apache"><span class="hljs-attribute">nc</span> localhost <span class="hljs-number">1234</span> &lt; file.pbf
+</code></pre>
+<h3 id="simple-short">Simple, short</h3>
+<!-- `> maptester --md --walks=1 --nodes=3 --seed=3 --out=assets/walk1nodes3-2.pbf` -->
+<!-- BEGIN mdsh -->
+<ul>
+<li>file name: <a href="https://esw.pages.fel.cvut.cz/labs/assets/walk1nodes3-2.pbf">walk1nodes3-2.pbf</a></li>
+<li>number of walks: 1</li>
+<li>number of locations: 3</li>
+<li><code>OneToOne.shortest_path_length</code> = 161855</li>
+<li><code>OneToAll.total_length</code> = 58260</li>
+</ul>
+<!-- END mdsh -->
+
+<h3 id="simple-longer">Simple, longer</h3>
+<!-- `> maptester --md --walks=1 --nodes=100 --seed=1 --out=assets/walk1nodes100-2.pbf` -->
+<!-- BEGIN mdsh -->
+<ul>
+<li>file name: <a href="https://esw.pages.fel.cvut.cz/labs/assets/walk1nodes100-2.pbf">walk1nodes100-2.pbf</a></li>
+<li>number of walks: 1</li>
+<li>number of locations: 100</li>
+<li><code>OneToOne.shortest_path_length</code> = 19545308</li>
+<li><code>OneToAll.total_length</code> = 941824954</li>
+</ul>
+<!-- END mdsh -->
+
+<h3 id="two-walks-with-common-edge">Two walks with common edge</h3>
+<!-- `> maptester --md --walks=2 --nodes=3 --seed=1 --from-node=23 --out=assets/walk2nodes6.pbf` -->
+<!-- BEGIN mdsh -->
+<ul>
+<li>file name: <a href="https://esw.pages.fel.cvut.cz/labs/assets/walk2nodes6.pbf">walk2nodes6.pbf</a></li>
+<li>number of walks: 2</li>
+<li>number of locations: 6</li>
+<li><code>OneToOne.shortest_path_length</code> = 41691</li>
+<li><code>OneToAll.total_length</code> = 664267</li>
+</ul>
+<!-- END mdsh -->
+
+<h3 id="many-walks-for-performance-tuning">Many walks for performance tuning</h3>
+<!-- `> (maptester --md --walks=3000 --seed=1 --out=walk3000.pbf | sed -e 's|(walk3000.pbf)|(https://rtime.ciirc.cvut.cz/~sojka/esw/walk3000.pbf)|') && rsync --quiet walk3000.pbf rtime:public_html/esw` -->
+<!-- BEGIN mdsh -->
+<ul>
+<li>file name: <a href="https://rtime.ciirc.cvut.cz/~sojka/esw/walk3000.pbf">walk3000.pbf</a></li>
+<li>number of walks: 3000</li>
+<li>number of locations: 1679366</li>
+<li><code>OneToOne.shortest_path_length</code> = 248408794</li>
+<li><code>OneToAll.total_length</code> = 23914104899237</li>
+</ul>
+<!-- END mdsh -->
+
+<h2 id="ritchie-server">Ritchie server</h2>
+<p>For testing, you can use our server named <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Ritchie</a>. You can access
+it by using <code>ssh username@ritchie.ciirc.cvut.cz</code> with the main CVUT
+password. This server is equipped with powerful Intel processors
+running Linux and is connected to the test server sending requests via
+a 10 Gbps Ethernet.</p>
+<p>Unfortunately, the server is behind a firewall that blocks all
+connections to the outside except SSH. Therefore, when configuring the
+server in the <a href="https://rtime.felk.cvut.cz/esw/server">web application</a>, use the hostname
+<code>ritchie.ciirc.cvut.cz</code> instead of the public IP address.</p>
+<h2 id="contest">Contest</h2>
+<p>The fastest 8 solutions get 8, 7, 6, 5, 4, 3, 2 and 1 additional point
+each.</p>
+<h2 id="presentation-of-the-best-results">Presentation of the best results</h2>
+<p>The last lab is reserved for the presentation of the best solutions. Be
+ready to present your solution.</p>
+<h2 id="evaluation">Evaluation</h2>
+<p>12 points is awarded if your solution passes the time limit.</p>
+<p>Up to 8 of the total 20 points are awarded for the quality of the solution and the quality of the code,
+which are subjective. The subjective evaluation includes: used algorithms and techniques, readability of
+the code, readme and project overview, git history, consistency of the
+code and naming conventions.</p>
+<p>Readme should include: complete instructions required to compile and run your application, used libraries, and brief description of algorithms and techniques you used to solve the challenges present in the task</p>
+<!-- Local Variables: -->
+<!-- compile-command: "mdsh --inputs ./efficient-servers.md" -->
+<!-- End: --></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="./zadani_files/base.js.stažený soubor" defer=""></script>
+        <script src="./zadani_files/main.js.stažený soubor" defer=""></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+  div.grammarly-desktop-integration {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+
+  div.grammarly-desktop-integration:before {
+    content: attr(data-content);
+  }
+</style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
