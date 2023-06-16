@@ -14,6 +14,8 @@ using namespace std;
 struct Node {
     int x;
     int y;
+    uint32_t id;
+    Node *left, *right;
 };
 
 struct Dist {
@@ -35,7 +37,10 @@ class Graph {
 
   private:
     vector<uint64_t> dijkstra(uint32_t source);
+    Node* insert(Node *root, int x, int y, uint32_t depth);
+    Node* find_NN(Node *root, int x, int y, uint32_t depth);
 
+    Node *root;
     vector<Node> nodes;
     vector<vector<Dist>> distances;
     //unordered_map<Node, uint32_t> node_to_id_map;

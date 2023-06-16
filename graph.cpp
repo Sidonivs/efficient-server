@@ -10,13 +10,15 @@ Graph::Graph() {
     pthread_rwlockattr_setkind_np(&attr, PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP);
     pthread_rwlock_init(&lock, &attr);
 
-    nodes.reserve(100);
-    distances.reserve(100);
+    //nodes.reserve(1000);
+    //distances.reserve(1000);
 }
 
 Graph::~Graph() {
     pthread_rwlock_destroy(&lock);
 }
+
+Node* 
 
 void Graph::add_walks(vector<esw::server::Walk>& walks) {
     for (uint32_t i = 0; i < walks.size(); ++i) {
@@ -36,7 +38,7 @@ void Graph::add_walks(vector<esw::server::Walk>& walks) {
             for (uint32_t k = 0; k < nodes.size(); ++k) {
                 euc_dist = sqrt(pow(nodes[k].x - x, 2) + pow(nodes[k].y - y, 2) * 1.0);
                 if (euc_dist <= 500) {
-                    // locations(j) == nodes[k], maybe update coords?
+                    // locations(j) == nodes[k]
                     new_node_ids[j] = k;
                     new_node_id--;
                     break;
@@ -150,7 +152,7 @@ uint64_t Graph::find_total_length(Node& origin) {
 
 vector<uint64_t> Graph::dijkstra(uint32_t source) {
     rd_lock(&lock);
-    uint32_t num_of_nodes = nodes.size();
+    uint32_t num_of_nodes = nodes.size(); //possible problem with multiple writes
     unlock(&lock);
     vector<uint64_t> dist(num_of_nodes, UINT32_MAX);
     dist[source] = 0;
@@ -196,6 +198,16 @@ void Graph::reset() {
     wr_lock(&lock);
     nodes.clear();
     distances.clear();
+    free_tree(root);
     //node_to_id_map.clear();
     unlock(&lock);
+}
+
+void free_tree(Node *root) {
+    if (root != NULL) {
+        free_tree(root->left);
+        free_tree(root->right);
+        free(root);
+        root = NULL;
+    }
 }
